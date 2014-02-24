@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Socialthing</title>
+	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+
+	<% if flash[:errors] %>
+	<ul>
+		<% flash[:errors].each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+	</ul>
+	<% end %>
+	<% if current_user %>
+		<p> Welcome back <%= current_user.email %> </p>
+		<%= button_to "log out", session_url, :method => :delete %>
+	<% end %>
+
+	<%= yield %>
+
+	</body>
+</html>
