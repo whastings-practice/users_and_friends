@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   validates :email, :password_digest, :session_token, :presence => true
 
+  has_many :friend_circles
+  has_many :friend_memberships, through: :friend_circles, source: :memberships
+  has_many :friends, through: :friend_memberships, source: :friend
 
   def self.create_session_token
     SecureRandom::urlsafe_base64(16)

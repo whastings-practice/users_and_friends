@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       login!  #Might need to pass user.
       redirect_to user_url(@user)
     else
-      flash.now[:errors] = @user.errors.full_messages
+      flash.now[:errors] = ["email / password combination not found"]
       render :new
     end
   end

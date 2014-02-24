@@ -8,4 +8,6 @@ Socialthing::Application.routes.draw do
   end
 
   resource :session, only: [:new, :create, :destroy]
+
+  resources :friend_circles
 end
