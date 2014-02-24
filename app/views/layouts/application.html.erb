@@ -15,6 +15,11 @@
 		<% end %>
 	</ul>
 	<% end %>
+
+	<% if flash[:notice] %>
+		<p><%= flash[:notice]%></p>
+	<% end %>
+
 	<% if current_user %>
 		<p> Welcome back <%= current_user.email %> </p>
 		<%= button_to "log out", session_url, :method => :delete %>

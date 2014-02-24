@@ -19,4 +19,17 @@ module SessionsHelper
   end
 
 
+  def require_signed_in
+    unless current_user
+      redirect_to new_session_url
+    end
+  end
+
+  def require_signed_out
+    if current_user
+       redirect_to user_url(current_user)
+    end
+  end
+
+
 end
