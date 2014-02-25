@@ -4,45 +4,50 @@
 	<input type="hidden" name="authenticity_token"
 				 value="<%= form_authenticity_token %>">
 
-	<label>
-	  Title
-	  <input type="text" name="post[title]" value="<%= @post.title %>">
-	</label>
-	<br>
+  <div class="form-group">
+    <label>
+      Title
+      <input type="text" name="post[title]" value="<%= @post.title %>">
+    </label>
+  </div>
 
-	<label>
-		Body
-		<textarea name="post[body]"><%= @post.body %></textarea>
-	</label>
-	<br>
+  <div class="form-group">
+    <label>
+      Body
+      <textarea name="post[body]"><%= @post.body %></textarea>
+    </label>
+  </div>
 
 	<h2>Links</h2>
 	<% @post.links.each_with_index do |link, i| %>
 		<fieldset>
-			<label>
-				Title
-				<input type="text" name="links[<%= i %>][title]"
-							 value="<%= link.title %>">
-			</label>
-			<br>
-			<label>
-				URL
-				<input type="text" name="links[<%= i %>][url]"
-				       value="<%= link.url %>">
-			</label>
+      <div class="form-group">
+        <label>
+          Title
+          <input type="text" name="links[<%= i %>][title]"
+                 value="<%= link.title %>">
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          URL
+          <input type="text" name="links[<%= i %>][url]"
+                 value="<%= link.url %>">
+        </label>
+      </div>
 		</fieldset>
 	<% end %>
 
 	<% if  @circles %>
-
-		<h2> Select circles to share with </h2>
-
+		<h2>Select circles to share with</h2>
 		<% @circles.each do |circle| %>
-			<label>
-				<input type="checkbox" name="post[friend_circle_ids][]"
-							 value="<%= circle.id %>">
-				<%= circle.name %>
-			</label>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="post[friend_circle_ids][]"
+                 value="<%= circle.id %>">
+          <%= circle.name %>
+        </label>
+      </div>
 		<% end %>
 	<% end %>
 

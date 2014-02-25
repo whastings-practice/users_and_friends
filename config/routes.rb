@@ -1,4 +1,6 @@
 Socialthing::Application.routes.draw do
+  root to: 'users#shared_posts_feed'
+
   resources :users do
     collection do
       get 'reset-password' => 'users#reset_password', :as => 'password_reset'

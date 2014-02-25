@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_signed_in, :only => [:edit, :update, :destroy]
+  before_action :require_signed_in,
+                :only => [:edit, :update, :destroy, :shared_posts_feed]
   before_action :require_correct_user, :only => [:edit, :update, :destroy]
 
   def new
@@ -39,6 +40,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
+    @circles = @user.friend_circles
     render :show
   end
 
