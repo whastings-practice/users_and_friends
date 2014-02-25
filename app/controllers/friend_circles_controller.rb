@@ -2,13 +2,8 @@ class FriendCirclesController < ApplicationController
   before_action :all_other_users, only: [:new, :create, :edit, :update]
 
   def new
-    existing_friend_circle = FriendCircle.find_by(user_id: current_user.id)
-    if existing_friend_circle
-      redirect_to edit_friend_circle_url(existing_friend_circle)
-    else
-      @friend_circle = FriendCircle.new
-      render :new
-    end
+    @friend_circle = FriendCircle.new
+    render :new
   end
 
   def create
@@ -18,6 +13,7 @@ class FriendCirclesController < ApplicationController
     if @friend_circle.save
       redirect_to user_url(current_user)
     else
+      fail
       flash.now[:errors] = @friend_circle.errors.full_messages
       render :new
     end
@@ -36,7 +32,8 @@ class FriendCirclesController < ApplicationController
   end
 
   def show
-
+    @post = Post.find(params[:id])
+    render :show
   end
 
   def destroy

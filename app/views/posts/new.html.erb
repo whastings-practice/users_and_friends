@@ -1,0 +1,50 @@
+<h1>Create a Post</h1>
+
+<form action="<%= posts_url %>" method="post" accept-charset="utf-8">
+	<input type="hidden" name="authenticity_token"
+				 value="<%= form_authenticity_token %>">
+
+	<label>
+	  Title
+	  <input type="text" name="post[title]" value="<%= @post.title %>">
+	</label>
+	<br>
+
+	<label>
+		Body
+		<textarea name="post[body]"><%= @post.body %></textarea>
+	</label>
+	<br>
+
+	<h2>Links</h2>
+	<% @post.links.each_with_index do |link, i| %>
+		<fieldset>
+			<label>
+				Title
+				<input type="text" name="links[<%= i %>][title]"
+							 value="<%= link.title %>">
+			</label>
+			<br>
+			<label>
+				URL
+				<input type="text" name="links[<%= i %>][url]"
+				       value="<%= link.url %>">
+			</label>
+		</fieldset>
+	<% end %>
+
+	<% if  @circles %>
+
+		<h2> Select circles to share with </h2>
+
+		<% @circles.each do |circle| %>
+			<label>
+				<input type="checkbox" name="post[friend_circle_ids][]"
+							 value="<%= circle.id %>">
+				<%= circle.name %>
+			</label>
+		<% end %>
+	<% end %>
+
+	<p><input type="submit" value="Create Post"></p>
+</form>

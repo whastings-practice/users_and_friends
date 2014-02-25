@@ -1,0 +1,15 @@
+<h1><%= @post.title %></h1>
+
+<p><%= @post.body %> </p>
+
+<ul>
+	<% @post.links.each do |link| %>
+		<li><%= link_to link.title, link.url %></li>
+	<% end %>
+
+</ul>
+
+
+<p> This post is shared with: <%=  @post.friend_circles.map(&:name).to_sentence %>
+
+</p>
