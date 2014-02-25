@@ -1,0 +1,5 @@
+TO DO:
+
+- Allow deletion of links.
+- On edit, build (3 - existing_links.count) existing posts
+- Allow editing of posts.
