@@ -1,7 +1,7 @@
 class FriendCirclesController < ApplicationController
   before_action :require_signed_in
   before_action :all_other_users, only: [:new, :create, :edit, :update]
-  before_action :circle_and_friends, only: [:edit, :update]
+  before_action :circle_and_friends, only: [:edit, :update, :show]
   before_action :require_correct_user, only: [:edit, :update, :show]
 
   def new

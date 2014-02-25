@@ -12,4 +12,6 @@ Socialthing::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :friend_circles
+
+  get 'feed', to: 'users#shared_posts_feed', as: 'feed'
 end

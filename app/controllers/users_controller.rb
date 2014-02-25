@@ -76,6 +76,11 @@ class UsersController < ApplicationController
     redirect_to edit_user_url(@user)
   end
 
+  def shared_posts_feed
+    @posts = current_user.posts_shared_with_user
+    render :feed
+  end
+
   private
 
   def user_params

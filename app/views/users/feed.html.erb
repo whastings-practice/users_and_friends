@@ -1,0 +1,12 @@
+<h1>Your Feed</h1>
+	<% @posts.each do |post| %>
+	<div class="shared-post" >
+		<h2> <%= post.title %> </h2>
+		<%= simple_format(post.body) %>
+		<ul>
+			<% post.links.each do |link| %>
+			<li><%= link_to link.title, link.url %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>

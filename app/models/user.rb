@@ -21,6 +21,19 @@ class User < ActiveRecord::Base
   has_many :friend_memberships, through: :friend_circles, source: :memberships
   has_many :friends, through: :friend_memberships, source: :friend
   has_many :posts
+  has_many :post_shares
+  has_many(
+    :memberships,
+    primary_key: :id,
+    foreign_key: :friend_id,
+    class_name: "FriendCircleMembership"
+  )
+  has_many :member_circles, through: :memberships, source: :friend_circle
+  has_many(
+    :posts_shared_with_user,
+    through: :member_circles,
+    source: :shared_posts
+  )
 
   def self.create_session_token
     SecureRandom::urlsafe_base64(16)

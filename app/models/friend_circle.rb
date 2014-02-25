@@ -21,6 +21,8 @@ class FriendCircle < ActiveRecord::Base
     foreign_key: :friend_circle_id,
     class_name: "FriendCircleMembership"
   )
+  has_many :post_shares
+  has_many :shared_posts, through: :post_shares, source: :post
 
   has_many :friends, :through => :memberships, :source => :friend
 
