@@ -15,8 +15,14 @@ class UserResetPassword < ActiveRecord::Base
 
   belongs_to :user
 
+  TOKEN_EXPIRATION = 2.days.ago
+
   def create_reset_token
     self.auth_token = SecureRandom::urlsafe_base64(32)
+  end
+
+  def expired?
+    self.created_at < TOKEN_EXPIRATION
   end
 
 end

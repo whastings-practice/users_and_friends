@@ -67,7 +67,7 @@ class UsersController < ApplicationController
 
   def new_password
     reset_password = UserResetPassword.find_by(:auth_token => params[:q])
-    unless reset_password
+    unless reset_password && !reset_password.expired?
       flash[:notice] = "Invalid reset token."
       redirect_to new_session_url
       return
